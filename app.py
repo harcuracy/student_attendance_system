@@ -24,7 +24,6 @@ conn, cursor = setup_database()
 # ----------------------------
 if "page" not in st.session_state:
     st.session_state.page = "Student Registration"
-
 if "run_recognition" not in st.session_state:
     st.session_state.run_recognition = False
 
@@ -36,8 +35,6 @@ page = st.sidebar.radio(
     ["Student Registration", "Real-Time Recognition"],
     index=0 if st.session_state.page == "Student Registration" else 1
 )
-
-detector = MTCNN()
 
 # ----------------------------
 # PAGE 1: STUDENT REGISTRATION
@@ -56,26 +53,33 @@ if page == "Student Registration":
         else:
             st.error("Please enter both Matric Number and Name.")
 
-# --- PAGE 2: REAL-TIME RECOGNITION ---
+# ----------------------------
+# PAGE 2: REAL-TIME RECOGNITION
+# ----------------------------
 elif page == "Real-Time Recognition":
+    st.session_state.page = "Real-Time Recognition"
     st.title("🕵️ Real-Time Attendance Recognition")
 
-    start_rec = st.button("Start Recognition")
-    FRAME_WINDOW = st.image([])
+    # Buttons to start/stop recognition
+    if st.button("Start Recognition"):
+        st.session_state.run_recognition = True
+    if st.button("Stop Recognition"):
+        st.session_state.run_recognition = False
 
-    if start_rec:
+    FRAME_WINDOW = st.empty()
+
+    if st.session_state.run_recognition:
         cap = cv2.VideoCapture(0)
-        stop = st.button("Stop Recognition")
+        detector = MTCNN()
 
-        while cap.isOpened() and not stop:
+        while st.session_state.run_recognition and cap.isOpened():
             ret, frame = cap.read()
             if not ret or frame is None or frame.size == 0:
-                continue  # skip empty or invalid frames
+                continue
 
-            # Convert BGR to RGB
+            # Convert BGR to RGB for MTCNN & display
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-            # Detect faces safely
             try:
                 faces = detector.detect_faces(frame_rgb)
             except Exception as e:
@@ -88,9 +92,11 @@ elif page == "Real-Time Recognition":
                 face_crop = frame_rgb[y:y+h, x:x+w]
 
                 # Recognize student (returns matric)
-                label = recognize_face_fast(face_crop, clf, le,
-                                            base_embeddings_dir="embeddings",
-                                            log_attendance=False)
+                label = recognize_face_fast(
+                    face_crop, clf, le,
+                    base_embeddings_dir="embeddings",
+                    log_attendance=False
+                )
 
                 if label not in ["Unknown", "NoFace", "Error"]:
                     marked = mark_attendance(label, cursor, conn)
@@ -98,11 +104,17 @@ elif page == "Real-Time Recognition":
                 else:
                     status = "Unknown"
 
+                # Pick color based on status
                 color = (0, 255, 0) if status == "Present" else (0, 0, 255)
-                cv2.rectangle(frame, (x, y), (x+w, y+h), color, 2)
-                cv2.putText(frame, f"{label} ({status})", (x, y-10),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.8, color, 2)
 
+                # Draw bounding box + label on frame
+                cv2.rectangle(frame_rgb, (x, y), (x+w, y+h), color, 2)
+                cv2.putText(frame_rgb, f"{label} ({status})",
+                            (x, y-10),
+                            cv2.FONT_HERSHEY_SIMPLEX,
+                            0.6, color, 2)
+
+            # Update the image in the Streamlit app
             FRAME_WINDOW.image(frame_rgb)
 
         cap.release()
