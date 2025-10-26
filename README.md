@@ -66,11 +66,6 @@ source .venv/bin/activate     # On macOS/Linux
 uv pip install -r requirements.txt
 ```
 
-If you don’t have a `requirements.txt` file yet, you can generate it from your environment using:
-```bash
-uv pip freeze > requirements.txt
-```
-
 ---
 
 ## ▶️ Running the App
