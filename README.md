@@ -74,7 +74,7 @@ uv pip install -r requirements.txt
 
 ```bash
 cd student_attendance_system
-python app.py
+streamlit run app.py
 ```
 
 Then open your browser and visit:  
