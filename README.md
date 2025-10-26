@@ -80,7 +80,7 @@ python main.py
 Then open your browser and visit:  
 👉 [http://localhost:5000](http://localhost:5000)
 
-### 🔹 Streamlit Version (Optional)
+### 🔹 Streamlit Version (App version)
 
 If you have a `app.py` Streamlit file:
 
