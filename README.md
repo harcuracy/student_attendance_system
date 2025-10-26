@@ -122,7 +122,7 @@ retina-face==0.0.17
 
 ## 👩‍💻 Author
 
-**Akinnusi Mary Hellen (Irewolede)**  
+**Akande soji (Irewolede)**  
 AI/ML Engineer — Bamidele Olumilua University of Education, Science, and Technology  
 📧 [akandesoji4christgmail.com](mailto:akandesoji4christ@gmail.com)
 
