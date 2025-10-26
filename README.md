@@ -70,11 +70,11 @@ uv pip install -r requirements.txt
 
 ## ▶️ Running the App
 
-### 🔹 Flask Version
+### 🔹 Python Version
 
 ```bash
 cd student_attendance_system
-streamlit run app.py
+python main.py
 ```
 
 Then open your browser and visit:  
@@ -82,10 +82,10 @@ Then open your browser and visit:
 
 ### 🔹 Streamlit Version (Optional)
 
-If you have a `main.py` Streamlit file:
+If you have a `app.py` Streamlit file:
 
 ```bash
-streamlit run main.py
+streamlit run app.py
 ```
 
 
