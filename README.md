@@ -55,7 +55,7 @@ uv venv --python 3.11
 ### 4️⃣ Activate the virtual environment
 
 ```bash
-.venv\Scripts\activate      # On Windows
+.\.venv\Scriptsctivate      # On Windows
 # or
 source .venv/bin/activate     # On macOS/Linux
 ```
