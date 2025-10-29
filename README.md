@@ -11,14 +11,14 @@ It detects and recognizes student faces in real time and automatically records a
 ✅ Works with webcam or uploaded images  
 ✅ Detects unknown faces  
 ✅ Uses DeepFace + MTCNN for accuracy  
-✅ Flask-based web interface (optional Streamlit version)  
+✅ Flask-based web interface   
 ✅ Easy to set up and run locally  
 
 ---
 
 ## 🛠️ Tech Stack
 
-- Python 3.10+
+- Python 3.11
 - TensorFlow 2.15.0  
 - DeepFace 0.0.95  
 - MTCNN 1.0.0  
@@ -55,7 +55,7 @@ uv venv --python 3.11
 ### 4️⃣ Activate the virtual environment
 
 ```bash
-.\.venv\Scriptsctivate      # On Windows
+.\.venv\Scripts\activate      # On Windows
 # or
 source .venv/bin/activate     # On macOS/Linux
 ```
