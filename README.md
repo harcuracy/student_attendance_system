@@ -46,16 +46,16 @@ git clone https://github.com/harcuracy/student_attendance_system.git
 cd student_attendance_system
 ```
 
-### 3️⃣ Create a virtual environment (Python 3.10)
+### 3️⃣ Create a virtual environment (Python 3.11)
 
 ```bash
-uv venv --python 3.10
+uv venv --python 3.11
 ```
 
 ### 4️⃣ Activate the virtual environment
 
 ```bash
-.\.venv\Scriptsctivate      # On Windows
+.venv\Scripts\activate      # On Windows
 # or
 source .venv/bin/activate     # On macOS/Linux
 ```
@@ -74,21 +74,11 @@ uv pip install -r requirements.txt
 
 ```bash
 cd student_attendance_system
-python main.py
+python app.py
 ```
 
 Then open your browser and visit:  
 👉 [http://localhost:5000](http://localhost:5000)
-
-### 🔹 Streamlit Version (App version)
-
-If you have a `app.py` Streamlit file:
-
-```bash
-streamlit run app.py
-```
-
-
 
 
 ## 📦 Example `requirements.txt`
@@ -97,16 +87,14 @@ These versions are confirmed to work together (Python 3.10):
 
 ```
 tensorflow==2.15.0
-deepface==0.0.95
-mtcnn==1.0.0
-opencv-python==4.11.0.86
-scikit-learn==1.7.2
-flask==3.1.2
-flask-cors==6.0.1
-streamlit==1.50.0
-pandas==2.3.3
 numpy==1.26.4
-retina-face==0.0.17
+keras-facenet==0.3.2
+deepface==0.0.93
+mtcnn==1.0.0
+scikit-learn==1.6.1
+pandas==2.2.3
+joblib==1.4.2
+
 ```
 
 ---
@@ -122,7 +110,7 @@ retina-face==0.0.17
 
 ## 👩‍💻 Author
 
-**Akinnusi Mary Hellen (Irewolede)**  
+**Akande soji (Irewolede)**  
 AI/ML Engineer — Bamidele Olumilua University of Education, Science, and Technology  
 📧 [akandesoji4christgmail.com](mailto:akandesoji4christ@gmail.com)
 
