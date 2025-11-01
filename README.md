@@ -73,7 +73,7 @@ uv pip install -r requirements.txt
 ### 🔹 Python Version
 
 ```bash
-cd student_attendance_system
+
 python app.py
 ```
 
